@@ -1,3 +1,3 @@
 public interface Printer {
-    void print(String message);
+        void print(PrinterImpl.Message message);
 }

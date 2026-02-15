@@ -1,25 +1,20 @@
 public class PrinterImpl implements Printer {
-
+    @Override
     public void print(Message message) {
         if ((message.getSender() == null || message.getSender().isEmpty()) && (message.getText() == null || message.getText().isEmpty())) {
             new Printer() {
                 @Override
-                public void print(String message) {
-                    System.out.println(message);
+                public void print(Message message) {
+                    System.out.println("Опрацьовується пусте повідомлення від анонімного користувача...");
                 }
-            }.print("Опрацьовується пусте повідомлення від анонімного користувача...");
+            }.print(message);
             return;
         }
         if (message.getSender() == null || message.getSender().isEmpty()) {
-            print("Анонімний користувач відправив повідомлення: " + message.getText());
+            System.out.println("Анонімний користувач відправив повідомлення: " + message.getText());
             return;
         }
-        print("Користувач " + message.getSender() + " відправив повідомлення: " + message.getText());
-    }
-
-    @Override
-    public void print(String message) {
-        System.out.println(message);
+        System.out.println("Користувач " + message.getSender() + " відправив повідомлення: " + message.getText());
     }
 
     public static class Message {
